@@ -1,0 +1,35 @@
+mysql> create database taobao;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> create table gwc (
+    -> id int primary key not null auto_increment,
+    -> prefer varchar(27),
+    -> discount int not null,
+    -> wish varchar(88));
+Query OK, 0 rows affected (0.37 sec)
+
+mysql> insert into gwc(id,prefer,discount,wish) values
+    -> (1,"yf",5,"qingkonggwc"),
+    -> (2,"x",6,"baoyou"),
+    -> (3,"ts",8,"mianfei");                                                   Query OK, 3 rows affected (0.31 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> update gwc set wish="xie" where id=2;
+Query OK, 1 row affected (0.23 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> delete from gwc where discount=6;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from gwc;
+select *from gwc;
+^C
+mysql> select * from gwc;
++----+--------+----------+-------------+
+| id | prefer | discount | wish        |
++----+--------+----------+-------------+
+|  1 | yf     |        5 | qingkonggwc |
+|  3 | ts     |        8 | mianfei     |
++----+--------+----------+-------------+
+2 rows in set (0.00 sec)
+
