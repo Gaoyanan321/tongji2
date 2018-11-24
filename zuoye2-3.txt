@@ -1,0 +1,86 @@
+mysql> use dy;
+Database changed
+mysql> create table yonghuming ( id int primary key not null auto_increment, name varchar(99), time int not null );
+Query OK, 0 rows affected (0.40 sec)
+
+mysql> insert into yonghuming (id,name,time) values (1,"xiaoli",7), (2,"xiaowang",9), (3,"xiaoguo",30);
+Query OK, 3 rows affected (0.09 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from yonghuming;
++----+----------+------+
+| id | name     | time |
++----+----------+------+
+|  1 | xiaoli   |    7 |
+|  2 | xiaowang |    9 |
+|  3 | xiaoguo  |   30 |
++----+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> select time from yonghuming where time=7;
++------+
+| time |
++------+
+|    7 |
++------+
+1 row in set (0.09 sec)
+
+mysql> select time from yonghuming where time>=7 and time<9;
++------+
+| time |
++------+
+|    7 |
++------+
+1 row in set (0.00 sec)
+
+mysql> alter table yonghuming add time1 int default 0;
+Query OK, 0 rows affected (0.42 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from yonghuming;
++----+----------+------+-------+
+| id | name     | time | time1 |
++----+----------+------+-------+
+|  1 | xiaoli   |    7 |     0 |
+|  2 | xiaowang |    9 |     0 |
+|  3 | xiaoguo  |   30 |     0 |
++----+----------+------+-------+
+3 rows in set (0.00 sec)
+
+
+mysql> alter table yonghuming add tiancai varchar(999);
+Query OK, 0 rows affected (0.33 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql> update yonghuming set tiancai ="xiaotiancaikuaihuilai" where time>=7 and time<9;
+Query OK, 1 row affected (0.30 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from yonghuming;
++----+----------+------+-------+-----------------------+
+| id | name     | time | time1 | tiancai               |
++----+----------+------+-------+-----------------------+
+|  1 | xiaoli   |    7 |     0 | xiaotiancaikuaihuilai |
+|  2 | xiaowang |    9 |     0 | NULL                  |
+|  3 | xiaoguo  |   30 |     0 | NULL                  |
++----+----------+------+-------+-----------------------+
+3 rows in set (0.00 sec)
+
+mysql> update yonghuming set tiancai ="xiaotiancaikuaihuilai" where time>=9 and time<30;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update yonghuming set tiancai ="xiaotiancaikuaihuilai" where time>=30;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from yonghuming;                                               +----+----------+------+-------+-----------------------+
+| id | name     | time | time1 | tiancai               |
++----+----------+------+-------+-----------------------+
+|  1 | xiaoli   |    7 |     0 | xiaotiancaikuaihuilai |
+|  2 | xiaowang |    9 |     0 | xiaotiancaikuaihuilai |
+|  3 | xiaoguo  |   30 |     0 | xiaotiancaikuaihuilai |
++----+----------+------+-------+-----------------------+
+3 rows in set (0.00 sec)
+

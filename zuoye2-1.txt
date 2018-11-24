@@ -1,0 +1,88 @@
+gaoyanan@ubuntu:~$ sudo mysql -u root -p
+[sudo] password for gaoyanan: 
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 5
+Server version: 5.7.24-0ubuntu0.18.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use hello;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> create database dy;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use dy;
+Database changed
+mysql> create table film;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> create table film1;
+ERROR 1113 (42000): A table must have at least 1 column
+mysql> create table film1 (
+    -> id int primary key not null auto_increment,
+    -> name varchar(66),
+    -> year int not null,
+    -> director varchar(88),
+    -> score int not null);
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> insert into film1 (id,name,year,director,score) values
+    -> (1,"starwars",30,"georgelucas",9),
+    -> (2,"finaldestination",18,"jameswang",6.6),
+    -> (3,"tangrenjie",1,"chensicheng",8);
+Query OK, 3 rows affected (0.04 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from film1;
++----+------------------+------+-------------+-------+
+| id | name             | year | director    | score |
++----+------------------+------+-------------+-------+
+|  1 | starwars         |   30 | georgelucas |     9 |
+|  2 | finaldestination |   18 | jameswang   |     7 |
+|  3 | tangrenjie       |    1 | chensicheng |     8 |
++----+------------------+------+-------------+-------+
+3 rows in set (0.27 sec)
+
+
+mysql> select*from film1 where name like '%arw%';
++----+----------+------+-------------+-------+
+| id | name     | year | director    | score |
++----+----------+------+-------------+-------+
+|  1 | starwars |   30 | georgelucas |     9 |
++----+----------+------+-------------+-------+
+1 row in set (0.01 sec)
+
+mysql> select * from film1 where director  like '%jam%';
++----+------------------+------+-----------+-------+
+| id | name             | year | director  | score |
++----+------------------+------+-----------+-------+
+|  2 | finaldestination |   18 | jameswang |     7 |
++----+------------------+------+-----------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from film1 where year like '18';
++----+------------------+------+-----------+-------+
+| id | name             | year | director  | score |
++----+------------------+------+-----------+-------+
+|  2 | finaldestination |   18 | jameswang |     7 |
++----+------------------+------+-----------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from film1 where score>=8;
++----+------------+------+-------------+-------+
+| id | name       | year | director    | score |
++----+------------+------+-------------+-------+
+|  1 | starwars   |   30 | georgelucas |     9 |
+|  3 | tangrenjie |    1 | chensicheng |     8 |
++----+------------+------+-------------+-------+
+2 rows in set (0.27 sec)
+

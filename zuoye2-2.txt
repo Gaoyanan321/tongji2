@@ -1,0 +1,42 @@
+mysql> create database zy;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use zy;
+Database changed
+
+
+mysql>createtabled(                                                             -   -> id int primary key not null auto_increment,
+    -> name varchar(99),
+    -> tpye varchar(100));                                                     
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> insert into d (id,name,tpye) values (1,"package","lv"), (2,"clothes","yifu");
+Query OK, 2 rows affected (0.28 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+
+mysql> alter table d add kuzi varchar(55);
+Query OK, 0 rows affected (0.53 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from d;
++----+---------+------+------+
+| id | name    | tpye | kuzi |
++----+---------+------+------+
+|  1 | package | lv   | NULL |
+|  2 | clothes | yifu | NULL |
++----+---------+------+------+
+2 rows in set (0.00 sec)
+
+
+mysql> delete from d where id=1;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from d;
++----+---------+------+------+
+| id | name    | tpye | kuzi |
++----+---------+------+------+
+|  2 | clothes | yifu | NULL |
++----+---------+------+------+
+1 row in set (0.00 sec)
+
